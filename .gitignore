@@ -1,0 +1,20 @@
+# Saasufy API credentials
+.saasufy-api-key
+
+# Node modules (if used in the future)
+node_modules/
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Environment files
+.env
+.env.local
