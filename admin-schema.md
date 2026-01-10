@@ -1,3 +1,49 @@
+# Constants
+
+```js
+const accessModesEnum = [
+  'allow',
+  'block',
+  'restrict'
+];
+
+const transformFilterTypes = [
+  'basic',
+  'advanced'
+];
+
+const indexFormats = [
+  'normal',
+  'lowerCase',
+  'upperCase',
+  'toString'
+];
+
+const maxLabelLength = 50;
+
+const maxRegExpStringLength = 100;
+const maxRegExpFlagStringLength = 10;
+
+const maxEnumStringLength = 200;
+
+const maxFieldListLength = 1000;
+const maxExpressionLength = 1000;
+const maxDefaultValueLength = 20000;
+
+const maxIndexNameLength = 200;
+const maxIndexDefinitionLength = 200;
+const maxViewParamLength = 200;
+
+const maxViewTransformIndexLength = 100;
+const maxViewTransformOperationTypeLength = 100;
+const maxViewTransformInputLength = 100;
+const maxViewTransformOrderByFieldLength = 100;
+const maxViewTransformFieldLength = 100;
+
+const maxSearchFilterLength = 100000;
+```
+
+# Schema
 
 ```js
 {
