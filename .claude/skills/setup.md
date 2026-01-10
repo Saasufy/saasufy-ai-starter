@@ -1,5 +1,5 @@
 ---
-name: saasufy-setup
+name: setup
 description: Help the user set up their Saasufy AI starter project by configuring their API credentials and service URL.
 ---
 
