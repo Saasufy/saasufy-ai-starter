@@ -1,6 +1,9 @@
-# Saasufy Setup
+---
+name: saasufy-setup
+description: Help the user set up their Saasufy AI starter project by configuring their API credentials and service URL.
+---
 
-Help the user set up their Saasufy AI starter project by configuring their API credentials.
+# Saasufy Setup
 
 ## What this skill does
 

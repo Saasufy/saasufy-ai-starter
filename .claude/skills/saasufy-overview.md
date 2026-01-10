@@ -1,4 +1,9 @@
-# Saasufy Application Builder
+---
+name: saasufy-overview
+description: Provides an overview of how to use the main Saasufy features and components.
+---
+
+# Saasufy Examples
 
 Build real-time web applications using Saasufy components - a declarative web component framework for creating data-driven apps with WebSocket connectivity.
 
@@ -314,7 +319,7 @@ When building Saasufy apps:
 5. **Field Access**: Check field permissions in Saasufy control panel if data won't load
 6. **Debug**: Check browser console for Saasufy connection errors
 7. **Single HTML File**: Keep apps as single .html files when possible for simplicity
-8. **Styling**: Optionally use `<link href="https://saasufy.com/node_modules/saasufy-components/styles.css" rel="stylesheet" />`
+8. **Styling**: Optionally use `<link href="./base-styles.css" rel="stylesheet" />`
 
 ## Example: Complete Todo App
 

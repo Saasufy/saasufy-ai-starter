@@ -1,6 +1,9 @@
-# Saasufy Schema Management Skill
+---
+name: saasufy-schema-management
+description: This skill helps you manage the schema of a Saasufy service using the Admin HTTP API.
+---
 
-This skill helps you manage the schema of a Saasufy service using the Admin HTTP API.
+# Saasufy Schema Management Skill
 
 ## When to Use This Skill
 

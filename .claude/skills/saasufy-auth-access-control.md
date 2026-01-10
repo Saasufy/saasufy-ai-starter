@@ -1,6 +1,9 @@
-# Saasufy Access Control Skill
+---
+name: saasufy-auth-access-control
+description: This skill helps you manage access control/authorization settings for Models and ModelFields in a Saasufy service using the Admin HTTP API.
+---
 
-This skill helps you manage access control settings for Models and ModelFields in a Saasufy service using the Admin HTTP API.
+# Saasufy Auth Access Control
 
 ## When to Use This Skill
 

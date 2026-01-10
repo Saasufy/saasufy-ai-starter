@@ -1,0 +1,310 @@
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+a {
+  text-decoration: none;
+  color: #e37042;
+}
+
+div.error,span.error,p.error {
+  color: #ff0000;
+}
+
+div.success,span.success,p.success {
+  color: #009900;
+}
+
+select {
+  padding: 7px;
+  font-size: 18px;
+  background-color: #ffffff;
+}
+
+input[type=text],input[type=password],input[type=number],select,textarea {
+  border: 1px solid #999999;
+  border-radius: 5px;
+}
+
+input[type=file] {
+  border: 1px solid #999999;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+input[type=text]:focus,input[type=password]:focus,input[type=number]:focus,input[type=file]:focus,select:focus,textarea:focus {
+  border-color: #00a5e5;
+  outline-color: #00a5e5;
+  outline-width: 1px;
+  outline-style: solid;
+}
+
+input[type=text].error,input[type=password].error,input[type=number].error,input[type=file].error,select.error,textarea.error {
+  border-color: #ff0000;
+  outline-color: #ff0000;
+}
+
+input[type=text].warning,input[type=password].warning,input[type=number].warning,input[type=file].warning,select.warning,textarea.warning {
+  border-color: #ee9900;
+  outline-color: #ee9900;
+}
+
+input[type=text].success:focus,input[type=password].success:focus,input[type=number].success:focus,input[type=file].success:focus,select.success:focus,textarea.success:focus {
+  border-color: #009900;
+  outline-color: #009900;
+}
+
+input[type=button],input[type=submit],button {
+  background: #eeeeee;
+  border: 1px solid #aaaaaa;
+  border-radius: 5px;
+}
+
+input[type=button][disabled],input[type=submit][disabled],button[disabled] {
+  opacity: .6;
+}
+
+input[type=text],input[type=password],input[type=button],input[type=submit],input[type=number],select,textarea,button {
+  padding: 10px;
+  font-size: 18px;
+  box-sizing: border-box;
+}
+
+model-input input[type=text],model-input input[type=password],model-input input[type=button],model-input input[type=submit],model-input input[type=number],model-input select,model-input textarea,model-input button {
+  width: 100%;
+}
+
+input[type=checkbox] {
+  width: 20px;
+  height: 20px;
+  margin: 0;
+}
+
+input[type=button]:not(input[disabled]),input[type=submit]:not(input[disabled]),button:not([disabled]) {
+  cursor: pointer;
+}
+
+input.error,textarea.error {
+  border: 1px solid #ff0000;
+}
+
+input.warning,textarea.warning {
+  border: 1px solid #ee9900;
+}
+
+.passphrase-container input {
+  max-width: 107px;
+}
+
+.log-in-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.passphrase-container {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+}
+
+capitalisk-log-in #is-multisig {
+  vertical-align: middle;
+}
+
+capitalisk-passphrase-input {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.loading-spinner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+  font-size: 40px;
+  color: #999999;
+}
+
+.multisig-indicator.spinning {
+  display: inline-block;
+}
+
+.spinning {
+  display: inline-block;
+  animation: spin 1s infinite linear;
+}
+
+.multisig-indicator.error {
+  color: #ff0000;
+}
+
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+collection-adder .collection-adder-form-content {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+collection-adder .collection-adder-form-content > label {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 0 5px 0;
+  align-self: flex-start;
+}
+
+.label-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 5px;
+  align-self: flex-start;
+}
+
+collection-viewer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+collection-viewer > [slot=viewport] {
+  display: flex;
+  flex-direction: column;
+}
+
+[slot=next-page],[slot=previous-page] {
+  cursor: pointer;
+}
+
+collection-viewer > [slot=previous-page] {
+  cursor: pointer;
+  flex-shrink: 1;
+  width: auto;
+}
+
+collection-viewer > [slot=page-number] {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 30px;
+}
+
+collection-viewer > [slot=next-page] {
+  cursor: pointer;
+  flex-shrink: 1;
+  width: auto;
+}
+
+.confirm-modal-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 20px;
+}
+
+.confirm-modal-buttons-container {
+  display: flex;
+  gap: 5px;
+}
+
+.container-column {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+.container-row {
+  display: flex;
+  flex-direction: row;
+  box-sizing: border-box;
+}
+
+.container-vertical {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.container-horizontal {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.container-narrow {
+  max-width: 500px;
+}
+
+.container-medium {
+  max-width: 1000px;
+}
+
+.container-wide {
+  max-width: 1500px;
+}
+
+.container-centered-main {
+  justify-content: center;
+}
+
+.container-centered-cross {
+  align-items: center;
+}
+
+.container-padded-small {
+  padding: 5px;
+}
+
+.container-padded-medium {
+  padding: 10px;
+}
+
+.container-padded-large {
+  padding: 20px;
+}
+
+.container-margined-small {
+  margin: 5px;
+}
+
+.container-margined-medium {
+  margin: 10px;
+}
+
+.container-margined-large {
+  margin: 20px;
+}
+
+.container-unpadded-sides {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.container-spaced-small {
+  gap: 5px;
+}
+
+.container-spaced-medium {
+  gap: 10px;
+}
+
+.container-spaced-large {
+  gap: 20px;
+}
+
+.container-spaced-very-large {
+  gap: 30px;
+}

@@ -1,3 +1,8 @@
+---
+name: saasufy-deployment-and-testing
+description: Helps to guide the user to deploy and test their application.
+---
+
 # Saasufy Deployment and Testing
 
 To test, you need to ask the user to deploy their Saasufy service by logging into their Dashboard and clicking on the `Deploy service` button.

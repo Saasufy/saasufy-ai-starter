@@ -1,6 +1,9 @@
-# Saasufy Data Management Skill
+---
+name: saasufy-data-management-skill
+description: This skill helps you manage data within your Saasufy service collections using the Service HTTP API.
+---
 
-This skill helps you manage data within your Saasufy service collections using the Service HTTP API.
+# Saasufy Data Management Skill
 
 ## When to Use This Skill
 
