@@ -25,6 +25,10 @@ A starter template for building AI-powered applications with [Saasufy](https://s
 
    Your Saasufy account is now connected! You can start building your AI-powered app using pure Web Components.
 
+4. **Don't forget to deploy**
+   
+   You will need to deploy schema changes manually from your `saasufy.com` control panel using the `Deploy service` button in order for them to take effect. Your AI agent cannot do this for you. Deployments in Saasufy are fast and should only take about a second or two. Make sure you deploy after your agent makes schema changes; it should remind you.
+
 ## What is Saasufy?
 
 Saasufy is a pure Web Components platform that requires no dependencies. Build your frontend directly in this repository and interact with your Saasufy backend via the HTTP API.
