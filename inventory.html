@@ -48,6 +48,31 @@
       font-size: 1.5em;
     }
 
+    collection-adder-form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    collection-adder-form input {
+      padding: 12px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      font-size: 1em;
+    }
+
+    collection-adder-form input[type="submit"] {
+      background-color: #4CAF50;
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+    }
+
+    collection-adder-form input[type="submit"]:hover {
+      background-color: #45a049;
+    }
+
     .inventory-list-section {
       background-color: #ffffff;
       padding: 30px;
@@ -70,7 +95,7 @@
 
     .inventory-item {
       display: grid;
-      grid-template-columns: 2fr 1fr 1fr;
+      grid-template-columns: 2fr 1fr 1fr auto;
       gap: 20px;
       padding: 20px;
       background-color: #f8f9fa;
@@ -78,6 +103,23 @@
       border-radius: 8px;
       align-items: center;
       transition: all 0.2s ease;
+      margin-bottom: 12px;
+    }
+
+    collection-deleter {
+      background-color: #f44336;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      padding: 8px 12px;
+      cursor: pointer;
+      font-size: 1.2em;
+      transition: background-color 0.2s ease;
+      display: inline-block;
+    }
+
+    collection-deleter:hover {
+      background-color: #da190b;
     }
 
     .inventory-item:hover {
@@ -163,15 +205,18 @@
       <!-- Add New Item Section -->
       <div class="add-item-section">
         <h2>Add New Item</h2>
-        <collection-adder
+        <collection-adder-form
           collection-type="InventoryItem"
-          collection-fields="name,stockAmount:number,salePrice:number"
-          field-labels="name='Item Name',stockAmount='Stock Amount',salePrice='Sale Price ($)'"
-          submit-button-label="Add Item"
           success-message="Item added successfully!"
           trim-spaces
           show-field-errors
-        ></collection-adder>
+        >
+          <div slot="message"></div>
+          <input type="text" name="name" placeholder="Item Name">
+          <input type="number" name="stockAmount" placeholder="Stock Amount">
+          <input type="number" name="salePrice" step="0.01" placeholder="Sale Price ($)">
+          <input type="submit" value="Add Item">
+        </collection-adder-form>
       </div>
 
       <!-- Inventory List -->
@@ -179,7 +224,7 @@
         <h2>Current Inventory</h2>
         <collection-viewer
           collection-type="InventoryItem"
-          collection-fields="id,name,stockAmount,salePrice"
+          collection-fields="id,name"
           collection-view="allItemsView"
           collection-view-params=""
           collection-page-size="50"
@@ -208,6 +253,12 @@
                   step="0.01"
                 ></model-input>
               </div>
+
+              <collection-deleter
+                model-id="{{InventoryItem.id}}"
+                confirm-message="Are you sure you want to delete {{InventoryItem.name}}?"
+                onclick="confirmDeleteItem()"
+              >&#x2715;</collection-deleter>
             </div>
           </template>
 
@@ -226,6 +277,13 @@
           </template>
 
           <div slot="viewport"></div>
+
+          <confirm-modal
+            slot="modal"
+            title="Delete Item"
+            message=""
+            confirm-button-label="Delete"
+          ></confirm-modal>
         </collection-viewer>
       </div>
     </div>
@@ -233,8 +291,10 @@
 
   <!-- Component Imports -->
   <script src="https://saasufy.com/node_modules/saasufy-components/socket.js" type="module" defer></script>
-  <script src="https://saasufy.com/node_modules/saasufy-components/collection-adder.js" type="module" defer></script>
+  <script src="https://saasufy.com/node_modules/saasufy-components/collection-adder-form.js" type="module" defer></script>
   <script src="https://saasufy.com/node_modules/saasufy-components/collection-viewer.js" type="module" defer></script>
   <script src="https://saasufy.com/node_modules/saasufy-components/model-input.js" type="module" defer></script>
+  <script src="https://saasufy.com/node_modules/saasufy-components/collection-deleter.js" type="module" defer></script>
+  <script src="https://saasufy.com/node_modules/saasufy-components/confirm-modal.js" type="module" defer></script>
 </body>
 </html>
