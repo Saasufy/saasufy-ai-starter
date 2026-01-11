@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inventory Tracking System</title>
+  <link rel="stylesheet" href="base-styles.css">
+  <style>
+    body {
+      background-color: #f0f2f5;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    }
+
+    .inventory-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    .inventory-header {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #1a1a1a;
+    }
+
+    .inventory-header h1 {
+      font-size: 2.5em;
+      margin-bottom: 10px;
+    }
+
+    .inventory-header p {
+      color: #666;
+      font-size: 1.1em;
+    }
+
+    .add-item-section {
+      background-color: #ffffff;
+      padding: 30px;
+      border-radius: 12px;
+      margin-bottom: 30px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .add-item-section h2 {
+      margin-top: 0;
+      margin-bottom: 20px;
+      color: #1a1a1a;
+      font-size: 1.5em;
+    }
+
+    .inventory-list-section {
+      background-color: #ffffff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .inventory-list-section h2 {
+      margin-top: 0;
+      margin-bottom: 20px;
+      color: #1a1a1a;
+      font-size: 1.5em;
+    }
+
+    .inventory-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .inventory-item {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 20px;
+      padding: 20px;
+      background-color: #f8f9fa;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      align-items: center;
+      transition: all 0.2s ease;
+    }
+
+    .inventory-item:hover {
+      background-color: #f0f2f5;
+      border-color: #d0d0d0;
+    }
+
+    .item-name {
+      font-weight: 600;
+      font-size: 1.2em;
+      color: #2c3e50;
+    }
+
+    .item-field {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .field-label {
+      font-size: 0.75em;
+      color: #666;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      font-weight: 500;
+    }
+
+    .item-field input {
+      padding: 8px 12px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      font-size: 1em;
+      transition: all 0.2s ease;
+    }
+
+    .item-field input:focus {
+      outline: none;
+      border-color: #4CAF50;
+      box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
+    }
+
+    .loading-spinner-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 60px 20px;
+    }
+
+    .spinning {
+      font-size: 3em;
+      animation: spin 1s linear infinite;
+      color: #4CAF50;
+    }
+
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    @media (max-width: 768px) {
+      .inventory-item {
+        grid-template-columns: 1fr;
+        gap: 15px;
+      }
+
+      .item-name {
+        font-size: 1.1em;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #e0e0e0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <socket-provider url="wss://saasufy.com/sid8006/socketcluster/">
+    <div class="inventory-container">
+      <!-- Header -->
+      <div class="inventory-header">
+        <h1>Inventory Tracking System</h1>
+        <p>Manage your inventory with real-time updates</p>
+      </div>
+
+      <!-- Add New Item Section -->
+      <div class="add-item-section">
+        <h2>Add New Item</h2>
+        <collection-adder
+          collection-type="InventoryItem"
+          collection-fields="name,stockAmount:number,salePrice:number"
+          field-labels="name='Item Name',stockAmount='Stock Amount',salePrice='Sale Price ($)'"
+          submit-button-label="Add Item"
+          success-message="Item added successfully!"
+          trim-spaces
+          show-field-errors
+        ></collection-adder>
+      </div>
+
+      <!-- Inventory List -->
+      <div class="inventory-list-section">
+        <h2>Current Inventory</h2>
+        <collection-viewer
+          collection-type="InventoryItem"
+          collection-fields="id,name,stockAmount,salePrice"
+          collection-view="allItemsView"
+          collection-view-params=""
+          collection-page-size="50"
+        >
+          <template slot="item">
+            <div class="inventory-item">
+              <div class="item-name">{{InventoryItem.name}}</div>
+
+              <div class="item-field">
+                <span class="field-label">Stock Amount</span>
+                <model-input
+                  type="number"
+                  model-type="InventoryItem"
+                  model-id="{{InventoryItem.id}}"
+                  model-field="stockAmount"
+                ></model-input>
+              </div>
+
+              <div class="item-field">
+                <span class="field-label">Sale Price ($)</span>
+                <model-input
+                  type="number"
+                  model-type="InventoryItem"
+                  model-id="{{InventoryItem.id}}"
+                  model-field="salePrice"
+                  step="0.01"
+                ></model-input>
+              </div>
+            </div>
+          </template>
+
+          <template slot="no-item">
+            <div style="text-align: center; padding: 60px 20px; color: #999;">
+              <div style="font-size: 3em; margin-bottom: 20px;">📦</div>
+              <div style="font-size: 1.2em; margin-bottom: 10px;">No inventory items yet</div>
+              <div>Add your first item above to get started!</div>
+            </div>
+          </template>
+
+          <template slot="loader">
+            <div class="loading-spinner-container">
+              <div class="spinning">&#8635;</div>
+            </div>
+          </template>
+
+          <div slot="viewport"></div>
+        </collection-viewer>
+      </div>
+    </div>
+  </socket-provider>
+
+  <!-- Component Imports -->
+  <script src="https://saasufy.com/node_modules/saasufy-components/socket.js" type="module" defer></script>
+  <script src="https://saasufy.com/node_modules/saasufy-components/collection-adder.js" type="module" defer></script>
+  <script src="https://saasufy.com/node_modules/saasufy-components/collection-viewer.js" type="module" defer></script>
+  <script src="https://saasufy.com/node_modules/saasufy-components/model-input.js" type="module" defer></script>
+</body>
+</html>
