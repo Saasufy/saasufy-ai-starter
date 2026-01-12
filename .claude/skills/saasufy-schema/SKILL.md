@@ -198,16 +198,18 @@ Optional fields for configuring the view:
 - `primaryFields` (string, comma-separated primary index fields)
 - `affectingFields` (string, fields that affect the view results)
 - `transformIndex` (string, index to use for the transform)
+- `transformIndexOperation` (string, can be "equals" or "between")
+- `transformIndexOperationInputA`: (string, typically referencing a viewParam passed into the view from the frontend; for example "$paramFields.companyEmployeeCountLow")
+- `transformIndexOperationInputB`: (string, represents the second operand if the "between" index operation is used)
 - `transformOrderByField` (string, field to sort by)
 - `transformOrderByDesc` (boolean, descending order)
 - `transformFilterType` (string, filter type)
 - `transformFilterField` (string, field to filter on)
+- `transformFilterQuery` (string, advanced query to filter records for this view; can be set to "$paramFields.query" to provide maximum flexibility to allow the frontend to construct the query)
 - `transformDistinct` (boolean, distinct results only)
 - `disableRealtime` (boolean, disable realtime updates)
 - `maxOffset` (number, max pagination offset)
-- `hideFieldsByDefault` (boolean)
-- `showFields` (string, comma-separated fields to show)
-- `hideFields` (string, comma-separated fields to hide)
+
 
 Example:
 ```bash
