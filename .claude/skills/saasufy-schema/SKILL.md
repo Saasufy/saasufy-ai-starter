@@ -294,6 +294,12 @@ curl -H "Authorization:Bearer $SAASUFY_API_KEY" \
   -XDELETE 'https://saasufy.com/api/ModelIndex/{INDEX_ID}'
 ```
 
+## Deploy Schema Changes
+
+```bash
+curl -H "Authorization:Bearer $SAASUFY_API_KEY" -XPOST 'https://saasufy.com/api/service/start'
+```
+
 ## Important Notes
 
 1. **Always read the API key from `.saasufy-api-key` file first**
@@ -301,7 +307,7 @@ curl -H "Authorization:Bearer $SAASUFY_API_KEY" \
 3. **Timestamps** (`createdAt`, `updatedAt`) are automatically managed by the system
 4. **When creating fields**, consider the data type and constraints carefully
 5. **Views and Indexes** should be created after the Model and Fields are defined
-6. After each set of schema changes, you must ask the user to Deploy the schema changes by clicking on the `Deploy service` button on their `Dashboard` page on `saasufy.com`.
+6. After making schema changes, you must deploy/start the service for the changes to take effect.
 
 ## Common Workflows
 
@@ -311,11 +317,11 @@ curl -H "Authorization:Bearer $SAASUFY_API_KEY" \
 2. Create Fields for the Model
 3. Create Views for querying the Model
 4. Create Indexes for performance
-5. Ask the user to Deploy the schema changes by clicking on the `Deploy service` button on their `Dashboard` page on `saasufy.com`.
+5. After making schema changes, you must deploy/start the service for the changes to take effect.
 
 ### Modify an Existing Schema
 
 1. List Models to find the one to modify
 2. List Fields/Views/Indexes for that Model
 3. Update or create new Fields/Views/Indexes as needed
-4. Ask the user to Deploy the schema changes by clicking on the `Deploy service` button on their `Dashboard` page on `saasufy.com`.
+4. After making schema changes, you must deploy/start the service for the changes to take effect.
