@@ -1,6 +1,6 @@
 ---
 name: saasufy-debugging-and-troubleshooting
-description: Helps to debug common saasufy issues.
+description: Helps to debug common saasufy issues including issues related to missing realtime updates and loss of focus.
 ---
 
 # Debugging and Troubleshooting
@@ -20,6 +20,7 @@ For example, the following code will cause a loss of focus when editing the `tit
   collection-fields="title,status,assignedTo"
   collection-view="allTodosView"
   collection-view-params=""
+  collection-view-primary-fields=""
   collection-page-size="50"
 >
   <template slot="item">
