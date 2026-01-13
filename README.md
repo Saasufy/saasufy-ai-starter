@@ -12,9 +12,9 @@ A starter template for building AI-powered applications with [Saasufy](https://s
 
 2. **Set up your Saasufy credentials**
 
-   If you're using Claude Code, simply run:
+   If you're using Claude Code, launch it from inside this main project directory and then ask it to set up your Saasufy application. For example:
    ```
-   /setup
+   Please set up my Saasufy application.
    ```
 
    This will guide you through creating and configuring your Saasufy API credentials.
