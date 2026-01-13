@@ -54,11 +54,18 @@
       gap: 15px;
     }
 
-    collection-adder-form input {
+    collection-adder-form input,
+    collection-adder-form textarea {
       padding: 12px;
       border: 1px solid #ddd;
       border-radius: 6px;
       font-size: 1em;
+    }
+
+    collection-adder-form textarea {
+      resize: vertical;
+      min-height: 80px;
+      font-family: inherit;
     }
 
     collection-adder-form input[type="submit"] {
@@ -133,6 +140,13 @@
       color: #2c3e50;
     }
 
+    .item-description {
+      margin-top: 8px;
+      font-size: 0.9em;
+      color: #666;
+      line-height: 1.4;
+    }
+
     .item-field {
       display: flex;
       flex-direction: column;
@@ -179,6 +193,18 @@
       to { transform: rotate(360deg); }
     }
 
+    /* Confirm Modal Styling */
+    overlay-modal::part(title-bar) {
+      background: #4CAF50;
+      color: #ffffff;
+    }
+
+    overlay-modal::part(dialog) {
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    }
+
     @media (max-width: 768px) {
       .inventory-item {
         grid-template-columns: 1fr;
@@ -215,6 +241,7 @@
           <input type="text" name="name" placeholder="Item Name">
           <input type="number" name="stockAmount" placeholder="Stock Amount">
           <input type="number" name="salePrice" step="0.01" placeholder="Sale Price ($)">
+          <textarea name="description" placeholder="Description (optional)"></textarea>
           <input type="submit" value="Add Item">
         </collection-adder-form>
       </div>
@@ -222,16 +249,33 @@
       <!-- Inventory List -->
       <div class="inventory-list-section">
         <h2>Current Inventory</h2>
+
+        <!-- Search Input -->
+        <div style="margin-bottom: 20px;">
+          <input-provider
+            type="text"
+            consumers=".inventory-viewer:collection-view-params"
+            provider-template="{{value ? 'query=name contains (?i)' + value : ''}}"
+            placeholder="Search by item name..."
+            input-props="style=width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 6px; font-size: 1em"
+          ></input-provider>
+        </div>
+
         <collection-viewer
+          class="inventory-viewer"
           collection-type="InventoryItem"
-          collection-fields="id,name"
+          collection-fields="id,name,description"
           collection-view="lowStockFirstView"
           collection-view-params=""
+          collection-view-primary-fields=""
           collection-page-size="50"
         >
           <template slot="item">
             <div class="inventory-item">
-              <div class="item-name">{{InventoryItem.name}}</div>
+              <div>
+                <div class="item-name">{{InventoryItem.name}}</div>
+                <div class="item-description">{{InventoryItem.description}}</div>
+              </div>
 
               <div class="item-field">
                 <span class="field-label">Stock Amount</span>
@@ -296,5 +340,6 @@
   <script src="https://saasufy.com/node_modules/saasufy-components/model-input.js" type="module" defer></script>
   <script src="https://saasufy.com/node_modules/saasufy-components/collection-deleter.js" type="module" defer></script>
   <script src="https://saasufy.com/node_modules/saasufy-components/confirm-modal.js" type="module" defer></script>
+  <script src="https://saasufy.com/node_modules/saasufy-components/input-provider.js" type="module" defer></script>
 </body>
 </html>
