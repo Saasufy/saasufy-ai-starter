@@ -9,6 +9,7 @@ The `collection-fields` attribute of the `collection-viewer` element represents 
 When such a field is modified via a nested `model-input` element, the element will lose focus upon re-render. To fix this, you should remove the affected field from the `collection-fields` attribute of the parent `collection-viewer`; this ensures that the re-rendering is limited to the `model-input` element and not the entire `collection-viewer`.
 
 For example, the following code will cause a loss of focus when editing the `title` field via the child `model-input` element because the `title` field is referenced both in the `collection-viewer` and also in the child `model-input` element:
+
 ```html
 <collection-viewer
   collection-type="Todo"
@@ -40,6 +41,7 @@ For example, the following code will cause a loss of focus when editing the `tit
   <div slot="viewport" class="todo-list"></div>
 </collection-viewer>
 ```
+
 To correct this, the `title` field should be removed from the `collection-fields` attribute of the parent `collection-viewer`.
 Note that the `assignedTo` field is also not needed in this case because it is not being referenced anywhere within that component and can lead to unnecessary re-rendering of the `collection-viewer`.
 
