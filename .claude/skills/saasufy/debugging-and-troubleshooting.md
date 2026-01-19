@@ -56,6 +56,7 @@ You should consider removing some `primaryFields` from the affected `ModelView` 
 **Possibility 3**
 If the update operation is being performed programmatically, it is strongly recommended that you add a `publisherId` property to the JSON payload.
 For example:
+
 ```js
   // The publisherId does not necessarily have to be unique.
   // Just passing any string will turn off the anti-self-delivery
@@ -71,3 +72,16 @@ For example:
   });
 ```
 By default, for efficiency reasons, change notifications originating from a specific CRUD action are not sent to the socket which initiated the action (anti-self-delivery feature).
+
+### Issues related to passing reserved characters in HTML attributes such as commas and equal signs
+
+Some component attributes take comma-separated values. In certain advanced scenarios, you may want the value for one of the properties to itself be a comma-separate value. In this case you would need to add single quotation marks around the nested value. See how the comma-separated value of the `fields` property is specified below.
+
+```js
+<collection-adder
+  slot="collection-adder"
+  collection-type="ModelIndex"
+  model-values="name=groupIdMemberAccountId,fields='groupId,memberAccountId',maxCardinality:number=1,modelId=${this.modelId}"
+  hide-submit-button
+></collection-adder>
+```
