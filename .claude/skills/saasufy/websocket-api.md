@@ -8,6 +8,7 @@ The Saasufy WebSocket CRUD API and Subscribe API are implemented on top of the S
 It is recommended to use the `socketcluster-client` library: http://npmjs.org/socketcluster-client
 
 You can connect a SocketCluster client socket to your Saasufy service like this:
+
 ```js
 // The the script URL/path may differ depending on your setup
 import {
@@ -34,6 +35,7 @@ await clientSocket.invoke('crud', queryObject);
 The format of the `queryObject` for various operations is shown below.
 
 ### Read collection view
+
 ```json
 {
     "action": "read",
@@ -51,6 +53,7 @@ This API returns a response object with `data` and `isLastPage` properties. The 
 If `getCount` is true, the operation will return the total number of records which exist in the specified view via a `count` property. Note that this can become computationally expensive if the view has a large number of records.
 
 ### Create model instance
+
 ```json
 {
     "action": "create",
@@ -65,6 +68,7 @@ If `getCount` is true, the operation will return the total number of records whi
 An optional `id` field can be specified as part of the `value` object. If it is not specified, then the `id` will be created automatically by Saasufy.
 
 ### Update model instance
+
 ```json
 {
     "action": "update",
@@ -78,6 +82,7 @@ An optional `id` field can be specified as part of the `value` object. If it is 
 By default, for efficiency reasons, change notifications related to a specific CRUD action are not sent to the socket which initiated the action. In order to receive such notifications, you should add a top level `publisherId` property to the object. It should be a string of length between 1 and 50 characters. The `publisherId` will be sent to the origin client socket alongside the change notification. It can be used to identify where the action originated.
 
 ### Delete model instance
+
 ```json
 {
     "action": "delete",
@@ -88,6 +93,7 @@ By default, for efficiency reasons, change notifications related to a specific C
 In order to receive change notifications back from the client socket which initiated an action, you should add a top level `publisherId` property to the object above. It should be a string of length between 1 and 50 characters. The `publisherId` will be sent to the origin client socket alongside the change notification.
 
 ### Read model field
+
 ```json
 {
     "action": "read",
@@ -99,6 +105,7 @@ In order to receive change notifications back from the client socket which initi
 The `field` property can be omitted to read the entire resource object with all available fields.
 
 ### Update model field
+
 ```json
 {
     "action": "update",
@@ -111,6 +118,7 @@ The `field` property can be omitted to read the entire resource object with all 
 In order to receive change notifications back from the client socket which initiated an action, you should add a top level `publisherId` property to the object above. It should be a string of length between 1 and 50 characters. The `publisherId` will be sent to the origin client socket alongside the change notification.
 
 ### Update multiple model fields
+
 ```json
 {
     "action": "update",
@@ -124,6 +132,7 @@ In order to receive change notifications back from the client socket which initi
 ```
 
 ### Delete model field
+
 ```json
 {
     "action": "delete",
@@ -177,4 +186,14 @@ For example, to subscribe to changes to the `name` field of a `Product` with ID 
 
 ```js
 'crud>Product/a3647d32-1aa2-4332-b8bb-8f3c84648cfa/name'
+```
+
+## Authentication API
+
+### Refresh the JWT auth token to apply the latest group access rights
+
+When using group-based access control features, the client may need to reauthenticate itself to obtain a fresh JWT with the latest group access rights (to update the `groupOwnerships` and `groupMemberships` fields of the JWT).
+
+```js
+await clientSocket.invoke('reauthenticate');
 ```
