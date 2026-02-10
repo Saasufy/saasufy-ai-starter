@@ -329,3 +329,32 @@ If a field is not appearing in responses:
 1. Check the field's `accessRead` setting
 2. Verify the user has the required role or ownership
 3. Check if field-level access control is more restrictive than Model-level
+
+### Filtering Results By Account ID
+
+You can filter based on an account ID by specifying an `accountId` property to the relevant component's attribute; for example by adding the relevant `socket.authToken.accountId` value to the `collection-view-params` attribute of the `collection-viewer` component. Note that the `socket` object can be accessed inside template expressions with double or triple curly braces. Relevant access controls will be enforced by matching the `accountId` from the `socket.authToken` against the `accountId` view param passed to the view.
+
+```html
+<collection-viewer
+  class="longlist-viewer"
+  collection-type="Longlist"
+  collection-fields="createdAt,accountId"
+  collection-view="accountSearchView"
+  collection-view-primary-fields="accountId"
+  collection-view-params="accountId={{socket.authToken ? socket.authToken.accountId : ''}},query="
+  collection-page-size="10"
+  auto-reset-page-offset
+>
+  <template slot="item">
+    <div class="card{{Longlist.accountId && Longlist.accountId.includes(',') ? ' card-shared' : ''}}">
+      <!-- CONTENT -->
+    </div>
+  </template>
+
+  <template slot="no-item">
+    <div class="container-vertical container-centered-cross container-centered-main" style="height: 100px;">No projects were found.</div>
+  </template>
+
+  <div slot="viewport"></div>
+</collection-viewer>
+```
