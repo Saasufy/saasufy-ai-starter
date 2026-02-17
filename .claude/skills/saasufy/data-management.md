@@ -24,7 +24,7 @@ SAASUFY_API_KEY=$(cat .saasufy-api-key)
 The Service API endpoint depends on your deployed Saasufy service.
 This URL is stored inside the `.saasufy-service-url` file at the root of the project. If it is not provided, the user should deploy their service and provide it to you; you should then add it to that file (replacing the default one which is a dummy URL containing the path `/sidxxxx/`).
 
-**Note:** The examples in curl-commands.md use `https://saasufy.com/sid8006/` for local development. Adjust the base URL based on where your service is deployed.
+**Note:** The examples in curl-commands.md use `https://saasufy.com/sid8006/api/` for local development. Adjust the base URL based on where your service is deployed.
 
 ## Understanding Models
 
@@ -68,7 +68,7 @@ curl -H "Authorization:Bearer $SAASUFY_API_KEY" \
 Example:
 ```bash
 curl -H "Authorization:Bearer $SAASUFY_API_KEY" \
-  -XGET 'https://saasufy.com/sid8006/Product/9fed41a0-caae-4620-8ed1-931a3b388fa3'
+  -XGET 'https://saasufy.com/sid8006/api/Product/9fed41a0-caae-4620-8ed1-931a3b388fa3'
 ```
 
 ### Get a List of Records Using a View
@@ -83,13 +83,13 @@ curl -H "Authorization:Bearer $SAASUFY_API_KEY" \
 Example:
 ```bash
 curl -H "Authorization:Bearer $SAASUFY_API_KEY" \
-  -XGET 'https://saasufy.com/sid8006/Product?view=defaultView'
+  -XGET 'https://saasufy.com/sid8006/api/Product?view=defaultView'
 ```
 
 With view parameters:
 ```bash
 curl -g -H "Authorization:Bearer $SAASUFY_API_KEY" \
-  -XGET 'https://saasufy.com/sid8006/Product?view=inStockView&viewParams[inStock]=true'
+  -XGET 'https://saasufy.com/sid8006/api/Product?view=inStockView&viewParams[inStock]=true'
 ```
 
 ### Create a New Record
@@ -110,7 +110,7 @@ Example:
 ```bash
 curl -H "Authorization:Bearer $SAASUFY_API_KEY" \
   -H "Content-Type: application/json" \
-  -XPOST 'https://saasufy.com/sid8006/Product' \
+  -XPOST 'https://saasufy.com/sid8006/api/Product' \
   -d '{"name": "Laptop", "price": 999.99, "description": "High-performance laptop", "inStock": true}'
 ```
 
@@ -129,7 +129,7 @@ Example:
 ```bash
 curl -H "Authorization:Bearer $SAASUFY_API_KEY" \
   -H "Content-Type: application/json" \
-  -XPUT 'https://saasufy.com/sid8006/Product/9124ac66-a493-4092-8cbd-3f2c8dd8d65e' \
+  -XPUT 'https://saasufy.com/sid8006/api/Product/9124ac66-a493-4092-8cbd-3f2c8dd8d65e' \
   -d '{"price": 899.99, "inStock": false}'
 ```
 
@@ -143,7 +143,7 @@ curl -H "Authorization:Bearer $SAASUFY_API_KEY" \
 Example:
 ```bash
 curl -H "Authorization:Bearer $SAASUFY_API_KEY" \
-  -XDELETE 'https://saasufy.com/sid8006/Product/9124ac66-a493-4092-8cbd-3f2c8dd8d65e'
+  -XDELETE 'https://saasufy.com/sid8006/api/Product/9124ac66-a493-4092-8cbd-3f2c8dd8d65e'
 ```
 
 ## Important Notes
@@ -195,12 +195,12 @@ curl -g -H "Authorization:Bearer $SAASUFY_API_KEY" \
 # 4. Create a new message record
 curl -H "Authorization:Bearer $SAASUFY_API_KEY" \
   -H "Content-Type: application/json" \
-  -XPOST 'https://saasufy.com/sid8006/Message' \
+  -XPOST 'https://saasufy.com/sid8006/api/Message' \
   -d '{"message": "Hello World", "from": "Alice"}'
 
 # 5. Query messages using a view
 curl -H "Authorization:Bearer $SAASUFY_API_KEY" \
-  -XGET 'https://saasufy.com/sid8006/Message?view=defaultView'
+  -XGET 'https://saasufy.com/sid8006/api/Message?view=defaultView'
 ```
 
 ## Tips for No-Code Experience
